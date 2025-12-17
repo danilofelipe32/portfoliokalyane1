@@ -527,99 +527,99 @@
             <!-- Detailed Stats Layout -->
             <div class="grid lg:grid-cols-3 gap-8">
                 
-                <!-- Main Themes Chart -->
-                <div class="lg:col-span-2 bg-white text-slate-800 rounded-3xl p-8 shadow-2xl">
-                    <h3 class="text-lg font-bold text-slate-900 mb-8">Temáticas Recorrentes</h3>
-                    <div class="space-y-6">
-                        <!-- Bar Item -->
-                        <div class="group">
-                            <div class="flex justify-between text-sm font-semibold mb-2">
-                                <span>Saúde Mental</span>
-                                <span class="text-psy-600">68.3%</span>
-                            </div>
-                            <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
-                                <div class="bg-psy-600 h-full rounded-full w-0 transition-all duration-1000 ease-out" style="width: 0%" data-width="68.3%"></div>
-                            </div>
-                        </div>
-                        <!-- Bar Item -->
-                        <div class="group">
-                            <div class="flex justify-between text-sm font-semibold mb-2">
-                                <span>Autocuidado</span>
-                                <span class="text-teal-500">38.1%</span>
-                            </div>
-                            <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
-                                <div class="bg-teal-500 h-full rounded-full w-0 transition-all duration-1000 ease-out delay-100" style="width: 0%" data-width="38.1%"></div>
-                            </div>
-                        </div>
-                        <!-- Bar Item -->
-                        <div class="group">
-                            <div class="flex justify-between text-sm font-semibold mb-2">
-                                <span>Comportamento Escolar</span>
-                                <span class="text-orange-500">38.1%</span>
-                            </div>
-                            <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
-                                <div class="bg-orange-500 h-full rounded-full w-0 transition-all duration-1000 ease-out delay-200" style="width: 0%" data-width="38.1%"></div>
-                            </div>
-                        </div>
-                        <!-- Bar Item -->
-                        <div class="group">
-                            <div class="flex justify-between text-sm font-semibold mb-2">
-                                <span>Ansiedade</span>
-                                <span class="text-purple-500">23.8%</span>
-                            </div>
-                            <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
-                                <div class="bg-purple-500 h-full rounded-full w-0 transition-all duration-1000 ease-out delay-300" style="width: 0%" data-width="23.8%"></div>
-                            </div>
-                        </div>
+                <!-- Main Themes Chart (Modern Bar - Enhanced) -->
+                <div class="lg:col-span-2 bg-white text-slate-800 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-8 opacity-5">
+                        <i class="fa-solid fa-chart-simple text-9xl text-slate-900"></i>
                     </div>
-                </div>
-
-                <!-- Circular Stat -->
-                <div class="bg-psy-600 text-white rounded-3xl p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
-                    <div class="absolute top-0 right-0 -mr-10 -mt-10 w-40 h-40 bg-white opacity-10 rounded-full"></div>
+                    <h3 class="text-xl font-serif font-bold text-slate-900 mb-8 relative z-10 flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group text-psy-500"></i> Temáticas Recorrentes
+                    </h3>
                     
-                    <h3 class="text-lg font-bold relative z-10">Motivação da Ação</h3>
-                    <div class="flex-1 flex flex-col items-center justify-center py-6">
-                        <span class="text-6xl font-serif font-bold">71%</span>
-                        <span class="text-sm font-medium opacity-80 mt-2">Demanda Preventiva</span>
-                    </div>
-                    <p class="text-xs opacity-60 text-center relative z-10">
-                        Iniciativa proativa do projeto, contra apenas 25.8% de demandas emergenciais.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <div class="space-y-6 relative z-10">
+                        <!-- Bar Item 1 -->
+                        <div class="group relative">
+                            <div class="flex justify-between items-end mb-2">
+                                <span class="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                    <i class="fa-solid fa-brain text-psy-500"></i> Saúde Mental
+                                </span>
+                                <span class="text-xs font-bold text-psy-600 bg-psy-50 px-2 py-1 rounded-md shadow-sm">68.3%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-5 overflow-hidden shadow-inner relative">
+                                <div class="h-full rounded-full bg-gradient-to-r from-psy-500 to-psy-300 w-0 transition-all duration-[1500ms] ease-out relative group-hover:brightness-110 shadow-lg shadow-psy-200/50" style="width: 0%" data-width="68.3%">
+                                    <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                                </div>
+                            </div>
+                            <!-- Tooltip -->
+                            <div class="absolute -top-8 left-[68.3%] -translate-x-1/2 bg-slate-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap shadow-xl z-20">
+                                43 Ações
+                                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 bg-slate-800 rotate-45"></div>
+                            </div>
+                        </div>
 
-    <!-- Conclusão -->
-    <section id="conclusao" class="py-24 bg-white">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-3xl font-serif font-bold text-slate-900 mb-12 text-center">Considerações Finais</h2>
-            
-            <div class="grid gap-6">
-                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 flex gap-6 items-start hover:bg-white hover:shadow-lg transition duration-300">
-                    <span class="flex-shrink-0 w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center mt-1"><i class="fa-solid fa-check"></i></span>
-                    <div>
-                        <h4 class="font-bold text-slate-900 mb-2">Objetivos Alcançados</h4>
-                        <p class="text-slate-500 leading-relaxed">O projeto fortaleceu a atuação preventiva e demonstrou viabilidade técnica e relevância institucional.</p>
+                        <!-- Bar Item 2 -->
+                        <div class="group relative">
+                            <div class="flex justify-between items-end mb-2">
+                                <span class="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                    <i class="fa-solid fa-spa text-teal-500"></i> Autocuidado
+                                </span>
+                                <span class="text-xs font-bold text-teal-600 bg-teal-50 px-2 py-1 rounded-md shadow-sm">38.1%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-5 overflow-hidden shadow-inner relative">
+                                <div class="h-full rounded-full bg-gradient-to-r from-teal-500 to-teal-300 w-0 transition-all duration-[1500ms] ease-out delay-100 relative group-hover:brightness-110 shadow-lg shadow-teal-200/50" style="width: 0%" data-width="38.1%">
+                                     <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                                </div>
+                            </div>
+                             <!-- Tooltip -->
+                             <div class="absolute -top-8 left-[38.1%] -translate-x-1/2 bg-slate-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap shadow-xl z-20">
+                                24 Ações
+                                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 bg-slate-800 rotate-45"></div>
+                            </div>
+                        </div>
+
+                        <!-- Bar Item 3 -->
+                        <div class="group relative">
+                            <div class="flex justify-between items-end mb-2">
+                                <span class="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                    <i class="fa-solid fa-school text-orange-500"></i> Comportamento Escolar
+                                </span>
+                                <span class="text-xs font-bold text-orange-600 bg-orange-50 px-2 py-1 rounded-md shadow-sm">38.1%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-5 overflow-hidden shadow-inner relative">
+                                <div class="h-full rounded-full bg-gradient-to-r from-orange-500 to-orange-300 w-0 transition-all duration-[1500ms] ease-out delay-200 relative group-hover:brightness-110 shadow-lg shadow-orange-200/50" style="width: 0%" data-width="38.1%">
+                                     <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                                </div>
+                            </div>
+                             <!-- Tooltip -->
+                             <div class="absolute -top-8 left-[38.1%] -translate-x-1/2 bg-slate-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap shadow-xl z-20">
+                                24 Ações
+                                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 bg-slate-800 rotate-45"></div>
+                            </div>
+                        </div>
+
+                        <!-- Bar Item 4 -->
+                        <div class="group relative">
+                            <div class="flex justify-between items-end mb-2">
+                                <span class="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                    <i class="fa-solid fa-cloud-rain text-purple-500"></i> Ansiedade
+                                </span>
+                                <span class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded-md shadow-sm">23.8%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-5 overflow-hidden shadow-inner relative">
+                                <div class="h-full rounded-full bg-gradient-to-r from-purple-500 to-purple-300 w-0 transition-all duration-[1500ms] ease-out delay-300 relative group-hover:brightness-110 shadow-lg shadow-purple-200/50" style="width: 0%" data-width="23.8%">
+                                     <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                                </div>
+                            </div>
+                             <!-- Tooltip -->
+                             <div class="absolute -top-8 left-[23.8%] -translate-x-1/2 bg-slate-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap shadow-xl z-20">
+                                15 Ações
+                                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 bg-slate-800 rotate-45"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 flex gap-6 items-start hover:bg-white hover:shadow-lg transition duration-300">
-                    <span class="flex-shrink-0 w-10 h-10 bg-psy-100 text-psy-600 rounded-full flex items-center justify-center mt-1"><i class="fa-solid fa-arrow-trend-up"></i></span>
-                    <div>
-                        <h4 class="font-bold text-slate-900 mb-2">Próximos Passos</h4>
-                        <p class="text-slate-500 leading-relaxed">Indica-se a continuidade em 2026, consolidando o "Laços que Cuidam" como ação permanente na 2ª DIREC.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-100 py-16">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h3 class="text-2xl font-serif font-bold text-slate-900 mb-6">Compromisso Profissional</h3>
+                <!-- Circular Stat (SVG Donut) -->
             <p class="text-slate-500 italic text-lg leading-relaxed max-w-2xl mx-auto mb-10">
                 "Esse trabalho representa minha atuação como psicóloga escolar, presente, orientada pela prevenção, pela escuta e fortalecimento das práticas educativas. Sigo à disposição para continuidade das ações institucionais."
             </p>
