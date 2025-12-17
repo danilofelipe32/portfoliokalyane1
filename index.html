@@ -506,20 +506,20 @@
 
             <!-- Stats Grid -->
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                <div class="p-8 bg-white/5 rounded-3xl backdrop-blur-sm border border-white/10 hover:bg-white/10 transition duration-300">
-                    <div class="text-4xl font-bold text-psy-300 mb-2 counter" data-target="20">0</div>
+                <div class="p-8 bg-white/5 rounded-3xl backdrop-blur-sm border border-white/10 hover:bg-white/10 transition duration-300 group">
+                    <div class="text-4xl font-bold text-psy-300 mb-2 counter group-hover:scale-110 transition-transform origin-left" data-target="20">0</div>
                     <p class="text-xs font-medium text-slate-400 uppercase tracking-wide">Escolas Atendidas</p>
                 </div>
-                <div class="p-8 bg-white/5 rounded-3xl backdrop-blur-sm border border-white/10 hover:bg-white/10 transition duration-300">
-                    <div class="text-4xl font-bold text-psy-300 mb-2 counter" data-target="8">0</div>
+                <div class="p-8 bg-white/5 rounded-3xl backdrop-blur-sm border border-white/10 hover:bg-white/10 transition duration-300 group">
+                    <div class="text-4xl font-bold text-psy-300 mb-2 counter group-hover:scale-110 transition-transform origin-left" data-target="8">0</div>
                     <p class="text-xs font-medium text-slate-400 uppercase tracking-wide">Municípios</p>
                 </div>
-                <div class="p-8 bg-white/5 rounded-3xl backdrop-blur-sm border border-white/10 hover:bg-white/10 transition duration-300">
-                    <div class="text-4xl font-bold text-psy-300 mb-2 counter" data-target="83">0</div>
+                <div class="p-8 bg-white/5 rounded-3xl backdrop-blur-sm border border-white/10 hover:bg-white/10 transition duration-300 group">
+                    <div class="text-4xl font-bold text-psy-300 mb-2 counter group-hover:scale-110 transition-transform origin-left" data-target="83">0</div>
                     <p class="text-xs font-medium text-slate-400 uppercase tracking-wide">Intervenções</p>
                 </div>
-                <div class="p-8 bg-white/5 rounded-3xl backdrop-blur-sm border border-white/10 hover:bg-white/10 transition duration-300">
-                    <div class="text-4xl font-bold text-psy-300 mb-2 counter" data-target="450">0</div>
+                <div class="p-8 bg-white/5 rounded-3xl backdrop-blur-sm border border-white/10 hover:bg-white/10 transition duration-300 group">
+                    <div class="text-4xl font-bold text-psy-300 mb-2 counter group-hover:scale-110 transition-transform origin-left" data-target="450">0</div>
                     <p class="text-xs font-medium text-slate-400 uppercase tracking-wide">Público (Variação)</p>
                 </div>
             </div>
@@ -620,20 +620,90 @@
                 </div>
 
                 <!-- Circular Stat (SVG Donut) -->
+                <div class="bg-gradient-to-br from-psy-700 to-psy-900 text-white rounded-3xl p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-psy-500 opacity-20 rounded-full blur-3xl group-hover:opacity-30 transition duration-500"></div>
+                    
+                    <h3 class="text-xl font-serif font-bold relative z-10 mb-4">Motivação da Ação</h3>
+                    
+                    <div class="flex-1 flex flex-col items-center justify-center relative">
+                        <!-- SVG Donut Chart -->
+                        <div class="relative w-48 h-48">
+                            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                                <!-- Background Circle -->
+                                <circle cx="50" cy="50" r="40" fill="transparent" stroke="rgba(255,255,255,0.1)" stroke-width="8" />
+                                <!-- Progress Circle (71%) -->
+                                <!-- Circumference = 2 * pi * 40 ≈ 251.2 -->
+                                <!-- 71% of 251.2 ≈ 178.35 -->
+                                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#38bdf8" stroke-width="8" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="251.2" class="donut-segment transition-all duration-[2000ms] ease-out" data-offset="72.85" />
+                            </svg>
+                            <!-- Center Text -->
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <span class="text-5xl font-bold">71%</span>
+                                <span class="text-[10px] uppercase tracking-widest text-psy-200 mt-1">Preventiva</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 space-y-2 relative z-10">
+                        <div class="flex items-center justify-between text-xs opacity-80 border-b border-white/10 pb-2">
+                            <span class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-psy-400"></div> Preventiva</span>
+                            <span class="font-bold">71%</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs opacity-60 pt-1">
+                            <span class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-white/20"></div> Emergencial</span>
+                            <span>25.8%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusão -->
+    <section id="conclusao" class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl font-serif font-bold text-slate-900 mb-12 text-center">Considerações Finais</h2>
+            
+            <div class="grid gap-6">
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 flex gap-6 items-start hover:bg-white hover:shadow-lg transition duration-300">
+                    <span class="flex-shrink-0 w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center mt-1"><i class="fa-solid fa-check"></i></span>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-2">Objetivos Alcançados</h4>
+                        <p class="text-slate-500 leading-relaxed">O projeto fortaleceu a atuação preventiva e demonstrou viabilidade técnica e relevância institucional.</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 flex gap-6 items-start hover:bg-white hover:shadow-lg transition duration-300">
+                    <span class="flex-shrink-0 w-10 h-10 bg-psy-100 text-psy-600 rounded-full flex items-center justify-center mt-1"><i class="fa-solid fa-arrow-trend-up"></i></span>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-2">Próximos Passos</h4>
+                        <p class="text-slate-500 leading-relaxed">Indica-se a continuidade em 2026, consolidando o "Laços que Cuidam" como ação permanente na 2ª DIREC.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-100 py-16">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h3 class="text-2xl font-serif font-bold text-slate-900 mb-6">Compromisso Profissional</h3>
             <p class="text-slate-500 italic text-lg leading-relaxed max-w-2xl mx-auto mb-10">
                 "Esse trabalho representa minha atuação como psicóloga escolar, presente, orientada pela prevenção, pela escuta e fortalecimento das práticas educativas. Sigo à disposição para continuidade das ações institucionais."
             </p>
             
-            <div class="flex justify-center gap-6 mb-10">
-                <a href="mailto:psicologakalyanecarvalho@gmail.com" class="w-12 h-12 rounded-full bg-slate-50 text-slate-600 flex items-center justify-center hover:bg-psy-600 hover:text-white transition duration-300">
+            <!-- Ícones Centralizados -->
+            <div class="flex justify-center gap-6 mb-8">
+                <a href="mailto:psicologakalyanecarvalho@gmail.com" class="w-12 h-12 rounded-full bg-slate-50 text-slate-600 flex items-center justify-center hover:bg-psy-600 hover:text-white transition duration-300 shadow-sm hover:shadow-md" title="Enviar E-mail">
                     <i class="fa-regular fa-envelope text-xl"></i>
                 </a>
-                <a href="https://instagram.com/kalyanecarvalho.psi" target="_blank" class="w-12 h-12 rounded-full bg-slate-50 text-slate-600 flex items-center justify-center hover:bg-pink-500 hover:text-white transition duration-300">
+                <a href="https://instagram.com/kalyanecarvalho.psi" target="_blank" class="w-12 h-12 rounded-full bg-slate-50 text-slate-600 flex items-center justify-center hover:bg-pink-500 hover:text-white transition duration-300 shadow-sm hover:shadow-md" title="Instagram">
                     <i class="fa-brands fa-instagram text-xl"></i>
                 </a>
             </div>
 
-            <p class="text-xs text-slate-300 font-medium">
+            <!-- Dados Centralizados Abaixo dos Ícones -->
+            <p class="text-xs text-slate-400 font-medium">
                 &copy; 2025 Projeto Preventivo - Psicologia nas Escolas. 2ª DIREC.
             </p>
         </div>
@@ -788,6 +858,22 @@
                     timelineObserver.observe(step);
                 });
             }
+            
+            // --- SVG Donut Animation ---
+            const donutSegments = document.querySelectorAll('.donut-segment');
+            const donutObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const offset = entry.target.getAttribute('data-offset');
+                        // Small delay to ensure paint
+                        setTimeout(() => {
+                            entry.target.style.strokeDashoffset = offset;
+                        }, 100);
+                        donutObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            donutSegments.forEach(segment => donutObserver.observe(segment));
         });
     </script>
 </body>
