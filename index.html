@@ -68,16 +68,17 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            left: 28px; /* Mobile alignment */
-            width: 1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
             background: #cbd5e1; /* Ajustado para contraste no fundo azul */
             z-index: 0;
         }
         
-        @media (min-width: 768px) {
+        @media (max-width: 768px) {
             .timeline-line::before {
-                left: 50%;
-                transform: translateX(-50%);
+                left: 20px;
+                transform: none;
             }
         }
 
@@ -344,50 +345,53 @@
                 <!-- Item 1 -->
                 <div class="relative flex flex-col md:flex-row items-center md:items-start group timeline-item fade-in-up">
                     <div class="order-1 md:w-1/2 text-center md:text-right md:pr-12">
-                        <h3 class="text-lg font-bold text-slate-800">Estruturação e Planejamento</h3>
-                        <p class="text-slate-600 text-sm mt-2">Planejamento detalhado das fases.</p>
+                        <h3 class="text-lg font-bold text-slate-800">Estruturação e planejamento do projeto</h3>
                     </div>
-                    <div class="order-2 z-10 flex items-center justify-center w-4 h-4 bg-psy-600 rounded-full border-4 border-white shadow-sm my-4 md:my-1.5 md:-ml-2"></div>
+                    <div class="order-2 z-10 flex items-center justify-center w-10 h-10 bg-psy-600 text-white rounded-full border-4 border-white shadow-sm my-4 md:my-1.5 md:-ml-2">
+                        <span class="font-bold text-sm">1</span>
+                    </div>
                     <div class="order-3 md:w-1/2 md:pl-12"></div>
                 </div>
 
                 <!-- Item 2 -->
                 <div class="relative flex flex-col md:flex-row items-center md:items-start group timeline-item fade-in-up">
                     <div class="order-1 md:w-1/2 md:pr-12"></div>
-                    <div class="order-2 z-10 flex items-center justify-center w-4 h-4 bg-white border-2 border-psy-400 rounded-full my-4 md:my-1.5 md:-ml-2"></div>
+                    <div class="order-2 z-10 flex items-center justify-center w-10 h-10 bg-psy-600 text-white rounded-full border-4 border-white shadow-sm my-4 md:my-1.5 md:-ml-2">
+                        <span class="font-bold text-sm">2</span>
+                    </div>
                     <div class="order-3 md:w-1/2 text-center md:text-left md:pl-12">
-                        <h3 class="text-lg font-bold text-slate-800">Divulgação e Convite</h3>
-                        <p class="text-slate-600 text-sm mt-2">Envio da proposta às escolas.</p>
+                        <h3 class="text-lg font-bold text-slate-800">Divulgação da proposta e convite às escolas</h3>
                     </div>
                 </div>
 
                 <!-- Item 3 -->
                 <div class="relative flex flex-col md:flex-row items-center md:items-start group timeline-item fade-in-up">
                     <div class="order-1 md:w-1/2 text-center md:text-right md:pr-12">
-                        <h3 class="text-lg font-bold text-slate-800">Inscrição Preventiva</h3>
-                        <p class="text-slate-600 text-sm mt-2">Adesão formal das instituições.</p>
+                        <h3 class="text-lg font-bold text-slate-800">Inscrição preventiva das escolas</h3>
                     </div>
-                    <div class="order-2 z-10 flex items-center justify-center w-4 h-4 bg-white border-2 border-psy-400 rounded-full my-4 md:my-1.5 md:-ml-2"></div>
+                    <div class="order-2 z-10 flex items-center justify-center w-10 h-10 bg-psy-600 text-white rounded-full border-4 border-white shadow-sm my-4 md:my-1.5 md:-ml-2">
+                        <span class="font-bold text-sm">3</span>
+                    </div>
                     <div class="order-3 md:w-1/2 md:pl-12"></div>
                 </div>
 
                 <!-- Item 4 -->
                 <div class="relative flex flex-col md:flex-row items-center md:items-start group timeline-item fade-in-up">
                     <div class="order-1 md:w-1/2 md:pr-12"></div>
-                    <div class="order-2 z-10 flex items-center justify-center w-4 h-4 bg-white border-2 border-psy-300 rounded-full shadow-lg border-4 border-white my-2 md:my-0">
+                    <div class="order-2 z-10 flex items-center justify-center w-10 h-10 bg-psy-600 text-white rounded-full shadow-lg border-4 border-white my-2 md:my-0">
                         <span class="font-bold text-sm">4</span>
                     </div>
                     <div class="order-3 md:w-1/2 md:pl-12 text-center md:text-left">
-                        <h3 class="text-xl font-bold text-psy-800">4. Contato e Agendamento</h3>
+                        <h3 class="text-xl font-bold text-psy-800">Contato e agendamento institucional</h3>
                     </div>
                 </div>
 
                 <!-- Step 5 -->
                 <div class="relative flex flex-col md:flex-row items-center md:items-start group timeline-item fade-in-up">
                     <div class="order-1 md:w-1/2 text-center md:text-right md:pr-12">
-                        <h3 class="text-xl font-bold text-psy-800">5. Reunião Institucional</h3>
+                        <h3 class="text-xl font-bold text-psy-800">Reunião institucional</h3>
                     </div>
-                    <div class="order-2 z-10 flex items-center justify-center w-10 h-10 bg-psy-200 text-white rounded-full shadow-lg border-4 border-white my-2 md:my-0">
+                    <div class="order-2 z-10 flex items-center justify-center w-10 h-10 bg-psy-600 text-white rounded-full shadow-lg border-4 border-white my-2 md:my-0">
                         <span class="font-bold text-sm">5</span>
                     </div>
                     <div class="order-3 md:w-1/2 md:pl-12"></div>
@@ -400,17 +404,16 @@
                         <span class="font-bold text-sm">6</span>
                     </div>
                     <div class="order-3 md:w-1/2 md:pl-12 text-center md:text-left">
-                        <h3 class="text-xl font-bold text-psy-800">6. Planejamento das Ações</h3>
-                        <p class="text-sm text-slate-600">E formalização.</p>
+                        <h3 class="text-xl font-bold text-psy-800">Planejamento das ações e formalização</h3>
                     </div>
                 </div>
 
                 <!-- Step 7 -->
                 <div class="relative flex flex-col md:flex-row items-center md:items-start group timeline-item fade-in-up">
                     <div class="order-1 md:w-1/2 text-center md:text-right md:pr-12">
-                        <h3 class="text-xl font-bold text-psy-800">7. Execução das Intervenções</h3>
+                        <h3 class="text-xl font-bold text-psy-800">Execução das intervenções</h3>
                     </div>
-                    <div class="order-2 z-10 flex items-center justify-center w-10 h-10 bg-psy-500 text-white rounded-full shadow-lg border-4 border-white my-2 md:my-0">
+                    <div class="order-2 z-10 flex items-center justify-center w-10 h-10 bg-psy-600 text-white rounded-full shadow-lg border-4 border-white my-2 md:my-0">
                         <span class="font-bold text-sm">7</span>
                     </div>
                     <div class="order-3 md:w-1/2 md:pl-12"></div>
@@ -419,22 +422,20 @@
                 <!-- Step 8 -->
                 <div class="relative flex flex-col md:flex-row items-center md:items-start group timeline-item fade-in-up">
                     <div class="order-1 md:w-1/2 md:pr-12"></div>
-                    <div class="order-2 z-10 flex items-center justify-center w-10 h-10 bg-psy-400 text-white rounded-full shadow-lg border-4 border-white my-2 md:my-0">
+                    <div class="order-2 z-10 flex items-center justify-center w-10 h-10 bg-psy-600 text-white rounded-full shadow-lg border-4 border-white my-2 md:my-0">
                         <span class="font-bold text-sm">8</span>
                     </div>
                     <div class="order-3 md:w-1/2 md:pl-12 text-center md:text-left">
-                        <h3 class="text-xl font-bold text-psy-800">8. Devolutiva e Registro</h3>
-                        <p class="text-sm text-slate-600">Registro documental.</p>
+                        <h3 class="text-xl font-bold text-psy-800">Devolutiva e registro documental</h3>
                     </div>
                 </div>
 
                 <!-- Step 9 -->
                 <div class="relative flex flex-col md:flex-row items-center md:items-start group timeline-item fade-in-up">
                     <div class="order-1 md:w-1/2 text-center md:text-right md:pr-12">
-                        <h3 class="text-xl font-bold text-psy-800">9. Acompanhamento</h3>
-                        <p class="text-sm text-slate-600">Rearticulação contínua (novas ações).</p>
+                        <h3 class="text-xl font-bold text-psy-800">Acompanhamento e rearticulação contínua (novas ações)</h3>
                     </div>
-                    <div class="order-2 z-10 flex items-center justify-center w-10 h-10 bg-psy-300 text-white rounded-full shadow-lg border-4 border-white my-2 md:my-0">
+                    <div class="order-2 z-10 flex items-center justify-center w-10 h-10 bg-psy-600 text-white rounded-full shadow-lg border-4 border-white my-2 md:my-0">
                         <span class="font-bold text-sm">9</span>
                     </div>
                     <div class="order-3 md:w-1/2 md:pl-12"></div>
@@ -443,12 +444,11 @@
                 <!-- Step 10 -->
                 <div class="relative flex flex-col md:flex-row items-center md:items-start group timeline-item fade-in-up">
                     <div class="order-1 md:w-1/2 md:pr-12"></div>
-                    <div class="order-2 z-10 flex items-center justify-center w-10 h-10 bg-psy-200 text-white rounded-full shadow-lg border-4 border-white my-2 md:my-0">
+                    <div class="order-2 z-10 flex items-center justify-center w-10 h-10 bg-psy-600 text-white rounded-full shadow-lg border-4 border-white my-2 md:my-0">
                         <span class="font-bold text-sm">10</span>
                     </div>
                     <div class="order-3 md:w-1/2 md:pl-12 text-center md:text-left">
-                        <h3 class="text-xl font-bold text-psy-800">10. Avaliação Institucional</h3>
-                        <p class="text-sm text-slate-600">Análise dos efeitos (impactos).</p>
+                        <h3 class="text-xl font-bold text-psy-800">Avaliação institucional e análise dos efeitos (impactos posteriormente)</h3>
                     </div>
                 </div>
             </div>
@@ -837,15 +837,15 @@
                     <div class="flex items-center justify-center py-4 cursor-pointer" onclick="openMunicipioModal()">
                         <div class="relative w-40 h-40">
                             <svg viewBox="0 0 100 100" class="w-full h-full transform -rotate-90">
-                                <!-- Parnamirim (30) ~49.18% - Blue -->
+                                <!-- Parnamirim (30) ~49.2% - Blue -->
                                 <circle r="25" cx="50" cy="50" fill="transparent" stroke="#3b82f6" stroke-width="50" stroke-dasharray="77.25 157.08" stroke-dashoffset="0" class="donut-segment transition-all duration-[1500ms] ease-out" data-offset="0"/>
-                                <!-- Goianinha (11) ~18.03% - Green -->
+                                <!-- Goianinha (11) ~18% - Green -->
                                 <circle r="25" cx="50" cy="50" fill="transparent" stroke="#22c55e" stroke-width="50" stroke-dasharray="28.32 157.08" stroke-dashoffset="-77.25" class="donut-segment transition-all duration-[1500ms] ease-out" data-offset="-77.25" />
-                                <!-- São José de Mipibu (7) ~11.47% - Orange -->
+                                <!-- São José de Mipibu (7) ~11.5% - Orange -->
                                 <circle r="25" cx="50" cy="50" fill="transparent" stroke="#f97316" stroke-width="50" stroke-dasharray="18.02 157.08" stroke-dashoffset="-105.57" class="donut-segment transition-all duration-[1500ms] ease-out" data-offset="-105.57" />
-                                <!-- Canguaretama (7) ~11.47% - Purple -->
+                                <!-- Canguaretama (7) ~11.5% - Purple -->
                                 <circle r="25" cx="50" cy="50" fill="transparent" stroke="#a855f7" stroke-width="50" stroke-dasharray="18.02 157.08" stroke-dashoffset="-123.59" class="donut-segment transition-all duration-[1500ms] ease-out" data-offset="-123.59" />
-                                <!-- Outros (6) ~9.84% - Gray -->
+                                <!-- Outros (6) ~9.8% - Gray -->
                                 <circle r="25" cx="50" cy="50" fill="transparent" stroke="#cbd5e1" stroke-width="50" stroke-dasharray="15.44 157.08" stroke-dashoffset="-141.61" class="donut-segment transition-all duration-[1500ms] ease-out" data-offset="-141.61" />
                                 
                                 <!-- Buraco do Donut -->
