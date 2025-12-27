@@ -1802,18 +1802,16 @@ DIRETRIZES DE RESPOSTA:
                 const typingIndicator = showTyping();
 
                 try {
-                    // 4. Call Groq API
-                    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                    // 4. Call APIFreeLLM API
+                    const response = await fetch("https://apifreellm.com/api/chat", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
-                            "Authorization": `Bearer ${GROQ_API_KEY}`
+                            // "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" // Note: Browsers control User-Agent, so this header is often ignored/overridden in client-side fetch.
                         },
                         body: JSON.stringify({
-                            model: "llama-3.3-70b-versatile",
-                            messages: chatHistory,
-                            temperature: 0.5,
-                            max_tokens: 1024
+                            // Concatenating System Prompt to provide context to the stateless free API model
+                            message: `${systemPrompt}\n\nUser: ${message}`
                         })
                     });
 
@@ -1822,12 +1820,19 @@ DIRETRIZES DE RESPOSTA:
                     }
 
                     const data = await response.json();
-                    const botReply = data.choices[0].message.content;
-
-                    // 5. Add Bot Message
-                    chatMessages.removeChild(typingIndicator);
-                    addMessage(botReply);
-                    chatHistory.push({ role: "assistant", content: botReply });
+                    
+                    if (data.status === 'success') {
+                        const botReply = data.response;
+                         // 5. Add Bot Message
+                        chatMessages.removeChild(typingIndicator);
+                        addMessage(botReply);
+                        // Note: Free API might not maintain history, so we don't strictly need to push to chatHistory for the API call itself if it's single-turn, 
+                        // but we keep it for potential future logic or if we manually construct history.
+                        // For this specific free endpoint structure, we sent system+user message combined.
+                        chatHistory.push({ role: "assistant", content: botReply });
+                    } else {
+                         throw new Error(data.error || "Unknown API Error");
+                    }
 
                 } catch (error) {
                     console.error(error);
@@ -1923,23 +1928,18 @@ DIRETRIZES DE RESPOSTA:
                 const timelineObserver = new IntersectionObserver((entries) => {
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
-                            // Only animate if not visible yet
                             if (!entry.target.classList.contains('visible')) {
-                                // Add class visible to trigger CSS transition
                                 entry.target.classList.add('visible');
-                                // Stop observing this specific element once animated
                                 timelineObserver.unobserve(entry.target);
                             }
                         }
                     });
                 }, { 
-                    threshold: 0.2, // Trigger when 20% visible
+                    threshold: 0.2,
                     rootMargin: "0px 0px -50px 0px"
                 });
 
                 timelineSteps.forEach((step, index) => {
-                    // Set a staggered delay based on index for "one by one" feel
-                    // if they appear together on screen
                     step.style.transitionDelay = `${index * 150}ms`; 
                     timelineObserver.observe(step);
                 });
@@ -1951,7 +1951,6 @@ DIRETRIZES DE RESPOSTA:
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const offset = entry.target.getAttribute('data-offset');
-                        // Small delay to ensure paint
                         setTimeout(() => {
                             entry.target.style.strokeDashoffset = offset;
                         }, 100);
