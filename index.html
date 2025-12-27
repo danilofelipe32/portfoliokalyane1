@@ -1637,7 +1637,7 @@
             const badge = chatTrigger.querySelector('span');
 
             // Groq API Configuration
-            const GROQ_API_KEY = "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";
+            const GROQ_API_KEY = "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";
             
             // SYSTEM PROMPT: Based on "Projeto Preventivo.pdf"
             const systemPrompt = `
@@ -1923,18 +1923,23 @@ DIRETRIZES DE RESPOSTA:
                 const timelineObserver = new IntersectionObserver((entries) => {
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
+                            // Only animate if not visible yet
                             if (!entry.target.classList.contains('visible')) {
+                                // Add class visible to trigger CSS transition
                                 entry.target.classList.add('visible');
+                                // Stop observing this specific element once animated
                                 timelineObserver.unobserve(entry.target);
                             }
                         }
                     });
                 }, { 
-                    threshold: 0.2,
+                    threshold: 0.2, // Trigger when 20% visible
                     rootMargin: "0px 0px -50px 0px"
                 });
 
                 timelineSteps.forEach((step, index) => {
+                    // Set a staggered delay based on index for "one by one" feel
+                    // if they appear together on screen
                     step.style.transitionDelay = `${index * 150}ms`; 
                     timelineObserver.observe(step);
                 });
@@ -1946,6 +1951,7 @@ DIRETRIZES DE RESPOSTA:
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const offset = entry.target.getAttribute('data-offset');
+                        // Small delay to ensure paint
                         setTimeout(() => {
                             entry.target.style.strokeDashoffset = offset;
                         }, 100);
