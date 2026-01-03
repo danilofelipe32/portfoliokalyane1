@@ -1673,6 +1673,51 @@
 
     <!-- Scripts -->
     <script>
+        // --- Mobile Menu Logic ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent immediate close from document click
+                const isHidden = mobileMenu.classList.contains('hidden');
+                
+                // Toggle Menu
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenu.classList.add('flex'); // Ensure flex is applied
+                    // Icon Change
+                    mobileMenuBtn.innerHTML = '<i class="fa-solid fa-xmark text-xl"></i>';
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                    // Icon Change
+                    mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars text-xl"></i>';
+                }
+            });
+
+            // Close on Link Click
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                    mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars text-xl"></i>';
+                });
+            });
+
+            // Close on Click Outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenu.classList.remove('flex');
+                        mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars text-xl"></i>';
+                    }
+                }
+            });
+        }
+
         // --- Share Function (Minimalist) ---
         async function sharePortfolio(btn) {
             const url = "https://portfoliokalyane1.vercel.app/";
