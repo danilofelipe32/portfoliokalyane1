@@ -77,8 +77,7 @@
         
         @media (max-width: 768px) {
             .timeline-line::before {
-                left: 20px;
-                transform: none;
+                display: none; /* Linha ocultada no mobile conforme solicitado */
             }
         }
 
@@ -1454,6 +1453,7 @@
                     </button>
                 </form>
                 <div class="text-[10px] text-center text-slate-400 mt-2">
+                    Digite <strong>/</strong> para ver sugestões de perguntas.<br>
                     IA treinada com documentos do projeto • Respostas geradas por IA
                 </div>
             </div>
@@ -1688,152 +1688,6 @@
 
     <!-- Scripts -->
     <script>
-        // --- Gooey Morphing Text Logic (Vanilla JS Adaptation) ---
-        // Ported from provided React component logic
-        document.addEventListener('DOMContentLoaded', () => {
-            const gooeyContainer = document.getElementById('gooey-container');
-            if (gooeyContainer) {
-                const text1 = document.getElementById('text1');
-                const text2 = document.getElementById('text2');
-                
-                // Texts to cycle through - 4 phrases
-                const texts = [
-                    'Laços que <span class="text-psy-600">Fortalecem</span>',
-                    'Psicologia <span class="text-psy-600">Educacional</span>',
-                    'Acolher <span class="text-psy-600">transforma</span>',
-                    'Vínculos <span class="text-psy-600">educam</span>'
-                ];
-
-                const morphTime = 1.5; // Slightly slower for better readability
-                const cooldownTime = 1.5; // Longer pause
-
-                let textIndex = 0; // Start at 0
-                let time = new Date();
-                let morph = 0;
-                let cooldown = cooldownTime;
-                
-                // Set initial text
-                if (text1 && text2) {
-                   text1.innerHTML = texts[textIndex % texts.length];
-                   text2.innerHTML = texts[(textIndex + 1) % texts.length];
-                }
-
-
-                function setMorph(fraction) {
-                    // Logic: blur = min(8 / fraction - 8, 100)
-                    // Opacity = pow(fraction, 0.4) * 100%
-                    
-                    const blurVal = Math.min(8 / fraction - 8, 100);
-                    const opacityVal = Math.pow(fraction, 0.4) * 100;
-
-                    // Apply to fading out text (text2 is fading out in this logic structure)
-                    text2.style.filter = `blur(${blurVal}px)`;
-                    text2.style.opacity = `${opacityVal}%`;
-
-                    // Inverse fraction for incoming text
-                    const invFraction = 1 - fraction;
-                    const invBlur = Math.min(8 / invFraction - 8, 100);
-                    const invOpacity = Math.pow(invFraction, 0.4) * 100;
-
-                    text1.style.filter = `blur(${invBlur}px)`;
-                    text1.style.opacity = `${invOpacity}%`;
-                }
-
-                function doCooldown() {
-                    morph = 0;
-                    text2.style.filter = "";
-                    text2.style.opacity = "100%";
-                    text1.style.filter = "";
-                    text1.style.opacity = "0%";
-                }
-
-                function doMorph() {
-                    morph -= cooldown;
-                    cooldown = 0;
-                    
-                    let fraction = morph / morphTime;
-
-                    if (fraction > 1) {
-                        cooldown = cooldownTime;
-                        fraction = 1;
-                    }
-
-                    setMorph(fraction);
-                }
-
-                function animate() {
-                    requestAnimationFrame(animate);
-                    
-                    const newTime = new Date();
-                    const shouldIncrementIndex = cooldown > 0;
-                    const dt = (newTime.getTime() - time.getTime()) / 1000;
-                    time = newTime;
-
-                    cooldown -= dt;
-
-                    if (cooldown <= 0) {
-                        if (shouldIncrementIndex) {
-                            textIndex = (textIndex + 1) % texts.length;
-                            // Set new text content
-                            text1.innerHTML = texts[textIndex % texts.length];
-                            text2.innerHTML = texts[(textIndex + 1) % texts.length];
-                        }
-                        doMorph();
-                    } else {
-                        doCooldown();
-                    }
-                }
-
-                // Start animation loop
-                animate();
-            }
-        });
-
-        // --- Mobile Menu Logic ---
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        if (mobileMenuBtn && mobileMenu) {
-            mobileMenuBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent immediate close from document click
-                const isHidden = mobileMenu.classList.contains('hidden');
-                
-                // Toggle Menu
-                if (isHidden) {
-                    mobileMenu.classList.remove('hidden');
-                    mobileMenu.classList.add('flex'); // Ensure flex is applied
-                    // Icon Change
-                    mobileMenuBtn.innerHTML = '<i class="fa-solid fa-xmark text-xl"></i>';
-                } else {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenu.classList.remove('flex');
-                    // Icon Change
-                    mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars text-xl"></i>';
-                }
-            });
-
-            // Close on Link Click
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenu.classList.remove('flex');
-                    mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars text-xl"></i>';
-                });
-            });
-
-            // Close on Click Outside
-            document.addEventListener('click', (e) => {
-                if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                        mobileMenu.classList.remove('flex');
-                        mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars text-xl"></i>';
-                    }
-                }
-            });
-        }
-
         // --- Share Function (Minimalist) ---
         async function sharePortfolio(btn) {
             const url = "https://portfoliokalyane1.vercel.app/";
@@ -2004,25 +1858,15 @@
             });
 
             // Show/Hide Icebreaker Menu Logic
-            chatInput.addEventListener('click', () => {
-                // Show if input is empty
-                if (chatInput.value.trim() === '') {
-                    icebreakerMenu.classList.remove('hidden');
-                }
-            });
+            // Hide initially (it is class="hidden" in HTML)
 
-            chatInput.addEventListener('focus', () => {
-                 if (chatInput.value.trim() === '') {
-                    icebreakerMenu.classList.remove('hidden');
-                }
-            });
-
-            // Hide when typing
+            // Input event to check for "/"
             chatInput.addEventListener('input', () => {
-                if (chatInput.value.trim() !== '') {
-                    icebreakerMenu.classList.add('hidden');
+                const val = chatInput.value.trim();
+                if (val === '/') {
+                    icebreakerMenu.classList.remove('hidden');
                 } else {
-                     icebreakerMenu.classList.remove('hidden');
+                    icebreakerMenu.classList.add('hidden');
                 }
             });
 
