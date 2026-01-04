@@ -400,8 +400,8 @@
                     </defs>
                 </svg>
                 
-                <!-- Gooey Text H1 -->
-                <div class="relative w-full h-full flex items-center justify-center text-5xl md:text-7xl font-serif font-bold leading-tight tracking-tight" style="filter: url(#threshold);">
+                <!-- Gooey Text H1 (Font Changed to Sans as requested) -->
+                <div class="relative w-full h-full flex items-center justify-center text-5xl md:text-7xl font-sans font-bold leading-tight tracking-tight" style="filter: url(#threshold);">
                     <span id="text1" class="absolute inline-block select-none text-center w-full text-slate-900">Laços que <span class="text-psy-600">Fortalecem</span></span>
                     <span id="text2" class="absolute inline-block select-none text-center w-full opacity-0 text-slate-900">Psicologia <span class="text-psy-600">Educacional</span></span>
                 </div>
@@ -2179,6 +2179,230 @@ DIRETRIZES DE RESPOSTA:
                 });
             }, { threshold: 0.5 });
             donutSegments.forEach(segment => donutObserver.observe(segment));
+
+            // --- Mobile Menu Logic (Ensuring it's present) ---
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', (e) => {
+                    e.stopPropagation(); 
+                    const isHidden = mobileMenu.classList.contains('hidden');
+                    
+                    if (isHidden) {
+                        mobileMenu.classList.remove('hidden');
+                        mobileMenu.classList.add('flex'); 
+                        mobileMenuBtn.innerHTML = '<i class="fa-solid fa-xmark text-xl"></i>';
+                    } else {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenu.classList.remove('flex');
+                        mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars text-xl"></i>';
+                    }
+                });
+
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenu.classList.remove('flex');
+                        mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars text-xl"></i>';
+                    });
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                        if (!mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                            mobileMenu.classList.remove('flex');
+                            mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars text-xl"></i>';
+                        }
+                    }
+                });
+            }
+
+            // --- Gooey Morphing Text Logic (Vanilla JS Adaptation) ---
+            const gooeyContainer = document.getElementById('gooey-container');
+            if (gooeyContainer) {
+                const text1 = document.getElementById('text1');
+                const text2 = document.getElementById('text2');
+                
+                const texts = [
+                    'Laços que <span class="text-psy-600">Fortalecem</span>',
+                    'Psicologia <span class="text-psy-600">Educacional</span>',
+                    'Acolher <span class="text-psy-600">transforma</span>',
+                    'Vínculos <span class="text-psy-600">educam</span>'
+                ];
+
+                const morphTime = 1.5; 
+                const cooldownTime = 1.5; 
+
+                let textIndex = 0; 
+                let time = new Date();
+                let morph = 0;
+                let cooldown = cooldownTime;
+                
+                if (text1 && text2) {
+                   text1.innerHTML = texts[textIndex % texts.length];
+                   text2.innerHTML = texts[(textIndex + 1) % texts.length];
+                }
+
+                function setMorph(fraction) {
+                    const blurVal = Math.min(8 / fraction - 8, 100);
+                    const opacityVal = Math.pow(fraction, 0.4) * 100;
+
+                    text2.style.filter = `blur(${blurVal}px)`;
+                    text2.style.opacity = `${opacityVal}%`;
+
+                    const invFraction = 1 - fraction;
+                    const invBlur = Math.min(8 / invFraction - 8, 100);
+                    const invOpacity = Math.pow(invFraction, 0.4) * 100;
+
+                    text1.style.filter = `blur(${invBlur}px)`;
+                    text1.style.opacity = `${invOpacity}%`;
+                }
+
+                function doCooldown() {
+                    morph = 0;
+                    text2.style.filter = "";
+                    text2.style.opacity = "100%";
+                    text1.style.filter = "";
+                    text1.style.opacity = "0%";
+                }
+
+                function doMorph() {
+                    morph -= cooldown;
+                    cooldown = 0;
+                    let fraction = morph / morphTime;
+                    if (fraction > 1) {
+                        cooldown = cooldownTime;
+                        fraction = 1;
+                    }
+                    setMorph(fraction);
+                }
+
+                function animate() {
+                    requestAnimationFrame(animate);
+                    const newTime = new Date();
+                    const shouldIncrementIndex = cooldown > 0;
+                    const dt = (newTime.getTime() - time.getTime()) / 1000;
+                    time = newTime;
+                    cooldown -= dt;
+
+                    if (cooldown <= 0) {
+                        if (shouldIncrementIndex) {
+                            textIndex = (textIndex + 1) % texts.length;
+                            text1.innerHTML = texts[textIndex % texts.length];
+                            text2.innerHTML = texts[(textIndex + 1) % texts.length];
+                        }
+                        doMorph();
+                    } else {
+                        doCooldown();
+                    }
+                }
+                animate();
+            }
+
+            // --- Polaroid Flick Through Logic (Vanilla JS Adaptation) ---
+            const polaroidContainer = document.getElementById('polaroid-stack');
+            const reshuffleBtn = document.getElementById('reshuffle-btn');
+            
+            if (polaroidContainer) {
+                const images = [
+                    { id: "1", src: "https://imgur.com/ELn1QNK.png", alt: "Reuniões" },
+                    { id: "2", src: "https://imgur.com/HWEvvym.png", alt: "Visitas Escolares" },
+                    { id: "3", src: "https://imgur.com/T8Ude0V.png", alt: "Formações" },
+                    { id: "4", src: "https://imgur.com/J1fVsot.png", alt: "Rodas de Conversa" },
+                    { id: "5", src: "https://imgur.com/u4WWzOV.png", alt: "Palestras" },
+                    { id: "6", src: "https://imgur.com/8xpGrOK.png", alt: "Acolhimentos" },
+                    { id: "7", src: "https://imgur.com/WpGtyUN.png", alt: "Planejamento" },
+                    { id: "8", src: "https://imgur.com/xuujluM.png", alt: "Intervenção" },
+                    { id: "9", src: "https://imgur.com/W1ioZwG.png", alt: "Escuta" },
+                ];
+
+                const scatterRadius = 30; 
+                const maxRotation = 10;
+                let currentSeed = 12345;
+
+                class SeededRandom {
+                    constructor(seed) { this.seed = seed; }
+                    next() {
+                        this.seed = (this.seed * 9301 + 49297) % 233280;
+                        return this.seed / 233280;
+                    }
+                    range(min, max) { return min + this.next() * (max - min); }
+                }
+
+                function generateScatterPositions(seedValue) {
+                    const rng = new SeededRandom(seedValue);
+                    return images.map(() => ({
+                        x: rng.range(-scatterRadius, scatterRadius), 
+                        y: rng.range(-scatterRadius, scatterRadius),
+                        rotation: rng.range(-maxRotation, maxRotation),
+                        scale: rng.range(0.95, 1.05),
+                    }));
+                }
+
+                function createCards() {
+                    polaroidContainer.innerHTML = ''; 
+                    const positions = generateScatterPositions(currentSeed);
+                    
+                    images.forEach((imgData, index) => {
+                        const pos = positions[index];
+                        const card = document.createElement('div');
+                        card.className = 'polaroid-card active'; 
+                        card.style.zIndex = index + 1; 
+                        
+                        card.style.transform = `translate(-50%, -50%) rotate(0deg) scale(0.8)`;
+                        card.style.opacity = '0';
+                        card.style.transitionDelay = `${index * 0.1}s`; 
+
+                        const img = document.createElement('img');
+                        img.src = imgData.src;
+                        img.alt = imgData.alt;
+                        img.className = 'polaroid-img';
+                        img.onclick = () => openImageModal(imgData.src);
+
+                        const caption = document.createElement('div');
+                        caption.className = 'polaroid-caption';
+                        caption.textContent = imgData.alt;
+
+                        card.appendChild(img);
+                        card.appendChild(caption);
+                        polaroidContainer.appendChild(card);
+
+                        requestAnimationFrame(() => {
+                            setTimeout(() => {
+                                 card.style.transform = `translate(calc(-50% + ${pos.x}px), calc(-50% + ${pos.y}px)) rotate(${pos.rotation}deg) scale(${pos.scale})`;
+                                 card.style.opacity = '1';
+                            }, 50);
+                        });
+                    });
+                }
+
+                 const polaroidObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            createCards();
+                            polaroidObserver.unobserve(entry.target); 
+                        }
+                    });
+                }, { threshold: 0.2 });
+
+                polaroidObserver.observe(polaroidContainer);
+
+                if (reshuffleBtn) {
+                    reshuffleBtn.addEventListener('click', () => {
+                        currentSeed = Math.floor(Math.random() * 1000000);
+                        const cards = polaroidContainer.querySelectorAll('.polaroid-card');
+                        cards.forEach(card => {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translate(-50%, -50%) scale(0.5)';
+                        });
+                        setTimeout(() => { createCards(); }, 300);
+                    });
+                }
+            }
+
         });
     </script>
 </body>
